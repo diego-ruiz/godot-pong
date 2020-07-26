@@ -1,11 +1,87 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Paddle.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Ball.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 736, 8 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 360 )
 
 [node name="Game" type="Node2D"]
 
-[node name="Paddle2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 859, 153 )
+[node name="GUI" type="MarginContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 144.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="GUI"]
+margin_right = 1024.0
+margin_bottom = 144.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI"]
+margin_right = 1024.0
+margin_bottom = 144.0
+
+[node name="Title" type="VBoxContainer" parent="GUI/HBoxContainer"]
+margin_right = 31.0
+margin_bottom = 144.0
+
+[node name="Label" type="Label" parent="GUI/HBoxContainer/Title"]
+margin_right = 31.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Pong"
+
+[node name="PlayerData" type="VBoxContainer" parent="GUI/HBoxContainer"]
+margin_left = 35.0
+margin_right = 94.0
+margin_bottom = 144.0
+
+[node name="P1" type="Label" parent="GUI/HBoxContainer/PlayerData"]
+margin_right = 59.0
+margin_bottom = 14.0
+text = "Player 1: "
+
+[node name="P2" type="Label" parent="GUI/HBoxContainer/PlayerData"]
+margin_top = 18.0
+margin_right = 59.0
+margin_bottom = 32.0
+text = "Player 2: "
 
 [node name="Paddle" parent="." instance=ExtResource( 1 )]
-position = Vector2( 95, 113 )
+position = Vector2( 72, 376 )
+UP_EVENT = "ui_w"
+DOWN_EVENT = "ui_s"
+
+[node name="Paddle2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 952, 376 )
+
+[node name="boundaries" type="StaticBody2D" parent="."]
+
+[node name="upper" type="CollisionShape2D" parent="boundaries"]
+position = Vector2( 376, 136 )
+shape = SubResource( 1 )
+
+[node name="lower" type="CollisionShape2D" parent="boundaries"]
+position = Vector2( 432, 608 )
+shape = SubResource( 1 )
+
+[node name="Ball" parent="." instance=ExtResource( 2 )]
+position = Vector2( 512, 320 )
+
+[node name="p1goal" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="p1goal"]
+position = Vector2( 0, 320 )
+shape = SubResource( 2 )
+
+[node name="p2goal" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="p2goal"]
+position = Vector2( 1024, 320 )
+shape = SubResource( 2 )
