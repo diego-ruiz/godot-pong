@@ -1,0 +1,76 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://panel.png" type="Texture" id=1]
+
+[node name="GUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Wrapper" type="MarginContainer" parent="."]
+anchor_right = 1.0
+margin_bottom = 144.0
+custom_constants/margin_right = 0
+custom_constants/margin_top = 0
+custom_constants/margin_left = 0
+custom_constants/margin_bottom = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="NinePatchRect" parent="Wrapper"]
+margin_right = 1024.0
+margin_bottom = 144.0
+texture = ExtResource( 1 )
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="ContentWrapper" type="MarginContainer" parent="Wrapper"]
+margin_right = 1024.0
+margin_bottom = 144.0
+custom_constants/margin_right = 15
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 15
+
+[node name="Row" type="HBoxContainer" parent="Wrapper/ContentWrapper"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 1009.0
+margin_bottom = 129.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Wrapper/ContentWrapper/Row"]
+margin_right = 165.0
+margin_bottom = 114.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Title" type="Label" parent="Wrapper/ContentWrapper/Row/VBoxContainer"]
+margin_right = 165.0
+margin_bottom = 14.0
+text = "Pong"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerScore" type="VBoxContainer" parent="Wrapper/ContentWrapper/Row"]
+margin_left = 169.0
+margin_right = 994.0
+margin_bottom = 114.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 10.0
+
+[node name="Player1Score" type="Label" parent="Wrapper/ContentWrapper/Row/PlayerScore"]
+margin_right = 825.0
+margin_bottom = 14.0
+text = "Player 1: 0"
+
+[node name="Player2Score" type="Label" parent="Wrapper/ContentWrapper/Row/PlayerScore"]
+margin_top = 18.0
+margin_right = 825.0
+margin_bottom = 32.0
+text = "Player 2: 0"

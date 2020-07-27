@@ -4,6 +4,8 @@ var velocity = Vector2()
 onready var SPEED = 400
 onready var paddle_width = 8
 onready var ball_width = 8
+signal score
+
 func _ready():
 	velocity.y -= 1
 	velocity.x -= 1
@@ -26,8 +28,10 @@ func _physics_process(delta):
 			else:
 				velocity.y *= -1
 		elif collision.collider.name == "p1goal":
+			emit_signal("score", "p2")
 			position.x = 512
 			position.y = 320
 		elif collision.collider.name == "p2goal":
+			emit_signal("score", "p1")
 			position.x = 512
 			position.y = 320
